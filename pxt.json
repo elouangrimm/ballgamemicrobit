@@ -5,7 +5,8 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2"
+        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2",
+        "radio-broadcast": "*"
     },
     "files": [
         "main.blocks",
@@ -20,14 +21,14 @@
         "branch": "v1.2.12",
         "tag": "v1.2.12",
         "commits": "https://github.com/Microsoft/pxt-microbit/commits/7c2d7ba7c481ff8da7ea3f8a1ba37f5bae099be9",
-        "target": "6.0.28",
+        "target": "8.0.18",
         "pxt": "4.4.7",
         "targetId": "microbit"
     },
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "pyprj",
+    "preferredEditor": "blocksprj",
     "yotta": {
         "config": {
             "microbit-dal": {

@@ -35,7 +35,7 @@ def point():
 
 def on_button_pressed_ab():
     basic.show_string("" + str(game.score()))
-    basic.pause(100)
+    basic.pause(10)
 input.on_button_pressed(Button.AB, on_button_pressed_ab)
 
 def setup():
@@ -48,11 +48,11 @@ def setup():
             timermode = True
             started = True
             music.play(music.create_sound_expression(WaveShape.SQUARE,
-                    147,
+                    150,
                     5000,
-                    105,
-                    255,
-                    291,
+                    100,
+                    250,
+                    300,
                     SoundExpressionEffect.NONE,
                     InterpolationCurve.CURVE),
                 music.PlaybackMode.UNTIL_DONE)
@@ -63,8 +63,8 @@ def setup():
             music.play(music.create_sound_expression(WaveShape.TRIANGLE,
                     1,
                     5000,
-                    40,
-                    255,
+                    50,
+                    250,
                     500,
                     SoundExpressionEffect.NONE,
                     InterpolationCurve.LINEAR),
@@ -93,6 +93,7 @@ gameover = False
 sound_on = False
 item: game.LedSprite = None
 ball: game.LedSprite = None
+
 setup()
 
 def on_forever():
