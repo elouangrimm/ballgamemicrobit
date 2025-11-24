@@ -17,11 +17,6 @@ input.onButtonPressed(Button.A, function () {
         start()
     }
 })
-basic.forever(function () {
-    if (sound_on) {
-        input.soundLevel()
-    }
-})
 function game_over () {
     basic.clearScreen()
     if (sound_on) {
@@ -43,28 +38,22 @@ function point () {
     item = game.createSprite(randint(0, 4), randint(0, 4))
 }
 input.onButtonPressed(Button.AB, function () {
-    if (!showingScore) {
+    if (!(showingScore)) {
         showingScore = true
-
-        let bx = ball.get(LedSpriteProperty.X)
-        let by = ball.get(LedSpriteProperty.Y)
-        let ix = item.get(LedSpriteProperty.X)
-        let iy = item.get(LedSpriteProperty.Y)
-
+        bx = ball.get(LedSpriteProperty.X)
+        by = ball.get(LedSpriteProperty.Y)
+        ix = item.get(LedSpriteProperty.X)
+        iy = item.get(LedSpriteProperty.Y)
         ball.delete()
         item.delete()
-
         basic.clearScreen()
-        basic.showString("" + game.score())
+        basic.showString("" + (game.score()))
         basic.pause(200)
-
         ball = game.createSprite(bx, by)
         item = game.createSprite(ix, iy)
-
         showingScore = false
     }
 })
-
 input.onButtonPressed(Button.B, function () {
     if (!(started)) {
         timermode = false
@@ -106,19 +95,28 @@ let moveDelay = 0
 let thresholdDiagonal = 0
 let thresholdStraight = 0
 let timer = 0
-let version2 = 0
-let version = 0
 let gameover = false
+let iy = 0
+let ix = 0
+let by = 0
+let bx = 0
 let showingScore = false
 let item: game.LedSprite = null
 let ball: game.LedSprite = null
+let sound_on = false
 let timermode = false
 let started = false
 let menuFlash = false
-let sound_on = false
+let version = 0
+let version2 = 0
 let total_time = 30
 let sensitivity = 1.75
 setup()
+basic.forever(function () {
+    if (sound_on) {
+        input.soundLevel()
+    }
+})
 basic.forever(function () {
     if (timermode && started) {
         timer = 0
@@ -139,12 +137,10 @@ basic.forever(function () {
         point()
         basic.pause(100)
     }
-
     thresholdStraight = 200 / sensitivity
     thresholdDiagonal = 120 / sensitivity
     moveDelay = 50
     diagDelay = Math.round(moveDelay * Math.SQRT2)
-
     if (input.acceleration(Dimension.X) < 0 - thresholdStraight && Math.abs(input.acceleration(Dimension.Y)) > thresholdDiagonal) {
         ball.change(LedSpriteProperty.X, -1)
         ball.change(LedSpriteProperty.Y, input.acceleration(Dimension.Y) < 0 ? -1 : 1)
